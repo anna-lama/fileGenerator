@@ -1,0 +1,280 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "GesticodePS",
+        "version": "1.0.0"
+    },
+    "definitions": {},
+    "paths": {
+        "/auth/": {
+            "post": {
+                "description": "Chiamata per effettuare la login al sistema è ricevere il token utile per effettuare tutte el chiamate",
+                "tags": [
+                    "Utenti"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "username",
+                                "password"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "default": ""
+                                },
+                                "msg": {
+                                    "type": "string",
+                                    "default": "ok"
+                                },
+                                "data": {
+                                    "nullable": true,
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "code",
+                                "msg"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/coda/cambiaStato": {
+            "post": {
+                "description": "Chiamata per cambiare lo stato di un paziente in coda ",
+                "tags": [
+                    "Coda"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "uidCartella": {
+                                    "type": "string"
+                                },
+                                "usernameOperatore": {
+                                    "type": "string"
+                                },
+                                "stato": {
+                                    "type": "number"
+                                },
+                                "sala": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "uidCartella",
+                                "usernameOperatore",
+                                "stato"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/coda/chiama": {
+            "post": {
+                "description": "Rotta per far effettuare al gesticode la chiamata tramite monitor ",
+                "tags": [
+                    "Coda"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "uidCartella": {
+                                    "type": "string"
+                                },
+                                "usernameOperatore": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "uidCartella",
+                                "usernameOperatore"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/coda/": {
+            "post": {
+                "description": "Chiamata per inserire un paziente in coda nel momento in cui viene fatto il triage",
+                "tags": [
+                    "Coda"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "codiceColore": {
+                                    "type": "string"
+                                },
+                                "uidCartella": {
+                                    "type": "string"
+                                },
+                                "nome": {
+                                    "type": "string"
+                                },
+                                "cognome": {
+                                    "type": "string"
+                                },
+                                "usernameOperatore": {
+                                    "type": "string"
+                                },
+                                "sala": {
+                                    "type": "number"
+                                },
+                                "stato": {
+                                    "type": "number"
+                                },
+                                "categoriaSala": {
+                                    "type": "string"
+                                },
+                                "problemaPrincipale": {
+                                    "type": "string"
+                                },
+                                "anamnesi": {
+                                    "type": "string"
+                                },
+                                "sintomiRiferiti": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "codiceColore",
+                                "uidCartella",
+                                "nome",
+                                "cognome",
+                                "usernameOperatore",
+                                "sala",
+                                "stato",
+                                "categoriaSala",
+                                "problemaPrincipale",
+                                "anamnesi",
+                                "sintomiRiferiti"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/sale/aggiornaSale": {
+            "get": {
+                "description": "La chiamata richiede le sale alla cartella, le memorizza nel DB e le restituisce al richiedente",
+                "tags": [
+                    "Sale"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/sale/": {
+            "get": {
+                "description": "La chiamata fornisce la lista delle sale disponibili nel DB del gesticode",
+                "tags": [
+                    "Sale"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        },
+        "/sale/modificaSala": {
+            "post": {
+                "description": "La chiamata serve per modificare i dati inerenti al solo gesticode di una sale dato l'id",
+                "tags": [
+                    "Sale"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Utenti",
+            "description": "Gestione dell'autenticazione"
+        },
+        {
+            "name": "Coda",
+            "description": "Gestione della coda"
+        },
+        {
+            "name": "Sale",
+            "description": "Gestione delle sale"
+        }
+    ]
+}
