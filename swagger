@@ -8,7 +8,7 @@
     "paths": {
         "/auth/": {
             "post": {
-                "description": "Chiamata per effettuare la login al sistema è ricevere il token utile per effettuare tutte el chiamate",
+                "description": "Chiamata per effettuare la login al sistema è ricevere il token utile per effettuare tutte le chiamate",
                 "tags": [
                     "Utenti"
                 ],
