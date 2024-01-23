@@ -8,7 +8,7 @@
     "paths": {
         "/auth/": {
             "post": {
-                "description": "Chiamata per effettuare la login al sistema è ricevere il token utile per effettuare tutte le chiamate",
+                "description": "Chiamata per effettuare la login al sistema è ricevere il token utile per effettuare tutte el chiamate",
                 "tags": [
                     "Utenti"
                 ],
@@ -95,9 +95,6 @@
                                 },
                                 "stato": {
                                     "type": "number"
-                                },
-                                "sala": {
-                                    "type": "number"
                                 }
                             },
                             "required": [
@@ -153,7 +150,7 @@
         },
         "/coda/": {
             "post": {
-                "description": "Chiamata per inserire un paziente in coda nel momento in cui viene fatto il triage",
+                "description": "Chiamata per inserire un paziente in coda nel momento in cui viene fatto il triage oppure per la rivalutazione",
                 "tags": [
                     "Coda"
                 ],
@@ -197,7 +194,10 @@
                                     "type": "string"
                                 },
                                 "sintomiRiferiti": {
-                                    "type": "string"
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
                                 }
                             },
                             "required": [
@@ -208,10 +208,7 @@
                                 "usernameOperatore",
                                 "sala",
                                 "stato",
-                                "categoriaSala",
-                                "problemaPrincipale",
-                                "anamnesi",
-                                "sintomiRiferiti"
+                                "categoriaSala"
                             ]
                         }
                     }
